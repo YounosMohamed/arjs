@@ -8,21 +8,18 @@
 <body style="margin : 0px; overflow: hidden;">
     <!-- create scene and set to use barcodes for detection-->
     <a-scene embeddded arjs = 'detectionMode: mono_and_matrix; matrixCodeType:3x3;'>
-        <!-- import assets -->
-        <a-assets>
-            <a-asset-item id='pacman-glb' src = 'pacman.glb'></a-asset-item>
-
-        </a-assets>
+        
         <!-- set marker entity and select marker type-->
         <a-marker type = 'barcode' value = '5'>
             
-            <!-- create entity from imported asset anchored to marker -->
-            <a-entity id = 'pacman' 
-            gltf-model = '#pacman-glb' 
+            <!-- create entity from imported asset anchored to marker 
+            (I couldnt figure out how to load the model from github, but if you download the glb file and change the source it should work)-->
+            <a-gltf-model id = 'pacman' 
+            src = 'https://github.com/yamoahmed/arjas/blob/main/pacman.glb'
             rotation = '-90 0 0' 
             scale = '0.2 0.2 0.2' 
             animation-mixer>
-            </a-entity>
+            </a-gltf-model>
 
             <!-- create text entity-->
             <a-text id = 'myText' 
