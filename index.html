@@ -41,42 +41,52 @@
     </a-scene>
 </body>
     <script>
+        //set interval between function call
         const interval = 100;
 
+        //set bounds
         const maxX = 1.0;
         const minX = -1.0;
 
+        // bind variables to entities
         let mySphere = document.getElementById('pacman');
         let myText = document.getElementById('myText');
 
+        //track part of cycle
         let cycleFlag = true;
- 
+        
+        //object holding vectors or model
         let mySphereVect = {
             x: 0.0,
             xDot:0.1, 
-            rot:180
         };
 
+        //track number of laps
         let counter = 0;
 
+
         function move(){
-            mySphereVect.x = mySphereVect.x + mySphereVect.xDot;
-            mySphere.setAttribute('position', mySphereVect.x + ' '+  0.0 + ' ' + 0.0);
+            mySphereVect.x = mySphereVect.x + mySphereVect.xDot; // calc new position of object
+            mySphere.setAttribute('position', mySphereVect.x + ' '+  0.0 + ' ' + 0.0); // set new position
+
+            //check if bounds hit
             if(mySphereVect.x > maxX || mySphereVect.x<minX){
-                cycleFlag = !cycleFlag;
-                mySphereVect.xDot = mySphereVect.xDot*-1;
+                cycleFlag = !cycleFlag; //flip cycle flag
+                mySphereVect.xDot = mySphereVect.xDot*-1; // reverse speed vector
+                
+                //check portion of cycle and set correct facing direction
                 if(cycleFlag){
                     mySphere.setAttribute('rotation', -90.0 + ' ' + 0.0 + ' ' + 0.0);
                 }
                 else{
                     mySphere.setAttribute('rotation', 90.0 + ' ' + 180.0 + ' ' + 0.0);
-                    myText.setAttribute('value', 'Pocman has done '+ counter +' laps!');
-                    counter++;
+                    myText.setAttribute('value', 'Pocman has done '+ counter +' laps!'); // update lap text
+                    counter++; //increase lap counter
                 }
             }
         }
 
-        window.setInterval(move,interval);
+        window.setInterval(move,interval); //call function on set timer
 
     </script>
 </html>
